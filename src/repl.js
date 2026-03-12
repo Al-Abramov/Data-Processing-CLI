@@ -1,9 +1,8 @@
 import { createInterface} from "node:readline/promises"
 import { printCurrentDir } from "./helpers/index.js";
+import { argParser } from "./utils/argParser.js";
 
 export const startRepl = (state) => {
-    const { currentDir } = state;
-
     const rl = createInterface({
         input: process.stdin,
         output: process.stdout,
@@ -13,14 +12,21 @@ export const startRepl = (state) => {
     rl.prompt()
 
     rl.on("line", (line) => {
-        const command = line.trim();
+        const [command, ...args] = line.trim().split(" ");
+
+        const { value, arg } = argParser(args);
+        console.log(value, arg)
+        if (!command) {
+            rl.prompt()
+            return;
+        }
 
         if (command === ".exit") {
             rl.close();
             return;
         }
 
-        printCurrentDir(currentDir );
+        printCurrentDir(state.currentDir );
 
         rl.prompt()
     })
