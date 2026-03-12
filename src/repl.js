@@ -1,6 +1,7 @@
 import { createInterface} from "node:readline/promises"
 import { printCurrentDir } from "./helpers/index.js";
 import { argParser } from "./utils/argParser.js";
+import { COMMANDS } from "./navigation.js";
 
 export const startRepl = (state) => {
     const rl = createInterface({
@@ -11,11 +12,11 @@ export const startRepl = (state) => {
 
     rl.prompt()
 
-    rl.on("line", (line) => {
+    rl.on("line", async (line) => {
         const [command, ...args] = line.trim().split(" ");
 
-        const { value, arg } = argParser(args);
-        console.log(value, arg)
+        const { commandValue, arg } = argParser(args);
+
         if (!command) {
             rl.prompt()
             return;
@@ -24,6 +25,14 @@ export const startRepl = (state) => {
         if (command === ".exit") {
             rl.close();
             return;
+        }
+
+        const navHandler = COMMANDS[command];
+
+        if (navHandler) {
+            await navHandler({state, commandValue});
+        } else {
+            console.log("Invalid input")
         }
 
         printCurrentDir(state.currentDir );

@@ -4,7 +4,7 @@ export const checkIsArgument = (arg) => {
 
 export const argParser = (args) => {
     const result = {
-        value: null,
+        commandValue: null,
         arg: {}
     };
 
@@ -16,7 +16,7 @@ export const argParser = (args) => {
         const name = value.slice(2);
 
         if (!i && !isArgument) {
-            result.value = value;
+            result.commandValue = value;
             continue;
         }
 
