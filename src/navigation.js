@@ -2,6 +2,7 @@ import path from "node:path";
 import fs from 'node:fs/promises';
 import { csvToJson } from "./commands/csvToJson.js";
 import { jsonToCsv } from "./commands/jsonToCsv.js";
+import { count } from "./commands/count.js";
 
 const up = ({ state }) => {
     const parent = path.dirname(state.currentDir);
@@ -64,5 +65,6 @@ export const COMMANDS = {
   cd,
   ls,
   ['csv-to-json']: csvToJson,
-  ['json-to-csv']: jsonToCsv
+  ['json-to-csv']: jsonToCsv,
+  count,
 }
