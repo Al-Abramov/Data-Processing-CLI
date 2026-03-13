@@ -1,5 +1,7 @@
 import path from "node:path";
 import fs from 'node:fs/promises';
+import { csvToJson } from "./commands/csvToJson.js";
+import { jsonToCsv } from "./commands/jsonToCsv.js";
 
 const up = ({ state }) => {
     const parent = path.dirname(state.currentDir);
@@ -60,5 +62,7 @@ const ls = async ({ state }) => {
 export const COMMANDS = {
   up,
   cd,
-  ls
+  ls,
+  ['csv-to-json']: csvToJson,
+  ['json-to-csv']: jsonToCsv
 }

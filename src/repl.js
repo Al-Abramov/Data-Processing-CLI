@@ -30,7 +30,7 @@ export const startRepl = (state) => {
         const navHandler = COMMANDS[command];
 
         if (navHandler) {
-            await navHandler({state, commandValue});
+            await navHandler({ state, commandValue, arg });
         } else {
             console.log("Invalid input")
         }
