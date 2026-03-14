@@ -63,6 +63,5 @@ export const count = async ({ state, arg }) => {
 
     } catch (error) {
         console.log("Operation failed");
-        throw error
     }
 }
