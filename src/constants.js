@@ -1,0 +1,1 @@
+export const ALGORITHMS = ["sha256", "md5", "sha512"];

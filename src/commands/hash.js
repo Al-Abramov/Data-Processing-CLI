@@ -3,8 +3,7 @@ import { createReadStream } from "node:fs";
 import { pipeline } from "node:stream/promises";
 import { writeFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
-
-const ALGORITHMS = ["sha256", "md5", "sha512"];
+import { ALGORITHMS } from "../constants.js";
 
 export const hash = async ({ state, arg }) => {
     try {
@@ -35,6 +34,8 @@ export const hash = async ({ state, arg }) => {
             const newFileName = `${filePath}.${algorithm}`;
             await writeFile(newFileName, fileHash);
         }
+
+        return fileHash;
     } catch (error) {
         console.log("Operation failed");
     }
