@@ -1,11 +1,12 @@
-import { createServer } from 'http'
+import os from "node:os";
+import { printCurrentDir } from "./helpers/index.js";
+import { startRepl } from "./repl.js";
 
-const PORT  = 3000;
+const state = {
+    currentDir: os.homedir()
+}
 
-const server = createServer((req, res) => {
-    res.end('Hello!')
-});
+console.log('Welcome to Data Processing CLI!')
+printCurrentDir(state.currentDir);
 
-server.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`)
-})
+startRepl(state);
