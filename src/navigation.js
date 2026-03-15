@@ -6,6 +6,7 @@ import { count } from "./commands/count.js";
 import { hash } from "./commands/hash.js";
 import { hashCompare } from "./commands/hashCompare.js";
 import { encrypt } from "./commands/encrypt.js";
+import { decrypt } from "./commands/decrypt.js";
 
 const up = ({ state }) => {
     const parent = path.dirname(state.currentDir);
@@ -72,5 +73,6 @@ export const COMMANDS = {
   count,
   hash,
   ['hash-compare']: hashCompare,
-  encrypt
+  encrypt,
+  decrypt
 }
