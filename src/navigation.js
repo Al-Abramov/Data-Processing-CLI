@@ -5,6 +5,7 @@ import { jsonToCsv } from "./commands/jsonToCsv.js";
 import { count } from "./commands/count.js";
 import { hash } from "./commands/hash.js";
 import { hashCompare } from "./commands/hashCompare.js";
+import { encrypt } from "./commands/encrypt.js";
 
 const up = ({ state }) => {
     const parent = path.dirname(state.currentDir);
@@ -70,5 +71,6 @@ export const COMMANDS = {
   ['json-to-csv']: jsonToCsv,
   count,
   hash,
-  ['hash-compare']: hashCompare
+  ['hash-compare']: hashCompare,
+  encrypt
 }
